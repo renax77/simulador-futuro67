@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Dilemas Tecnológicos y Prospectiva</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            cyber: {
+              bg: '#0f172a',
+              card: '#1e293b',
+              border: '#334155',
+              neon: '#06b6d4',
+              accent: '#3b82f6',
+              purple: '#a855f7',
+              rose: '#f43f5e',
+              emerald: '#10b981'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #0f172a;
+      color: #f8fafc;
+      overflow-x: hidden;
+    }
+    
+    /* Neon Glow Effects */
+    .glow-cyan {
+      box-shadow: 0 0 15px rgba(6, 182, 212, 0.35);
+    }
+    .glow-cyan-lg {
+      box-shadow: 0 0 30px rgba(6, 182, 212, 0.5);
+    }
+    .text-glow {
+      text-shadow: 0 0 8px rgba(6, 182, 212, 0.6);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #06b6d4;
+    }
+
+    /* Scanline Overlay Effect */
+    .scanlines {
+      background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 0, 0, 0.25) 50%
+      ), linear-gradient(
+        90deg,
+        rgba(255, 0, 0, 0.03),
+        rgba(0, 255, 0, 0.01),
+        rgba(0, 0, 255, 0.03)
+      );
+      background-size: 100% 3px, 6px 100%;
+      pointer-events: none;
+    }
+
+    /* Radar Pulse Animation */
+    @keyframes radarPulse {
+      0% { transform: scale(0.8); opacity: 0.8; }
+      100% { transform: scale(2.2); opacity: 0; }
+    }
+    .radar-pulse {
+      animation: radarPulse 2s infinite ease-out;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased bg-cyber-bg text-slate-100 min-h-screen flex flex-col relative selection:bg-cyber-neon selection:text-slate-900">
+
+  <!-- Canvas de fondo para partículas cibernéticas -->
+  <canvas id="bgCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40"></canvas>
+  <div class="scanlines fixed top-0 left-0 w-full h-full z-10 opacity-30"></div>
+
+  <!-- Contenedor Principal -->
+  <div class="relative z-20 flex-1 flex flex-col max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    <!-- Encabezado Sci-Fi Dashboard -->
+    <header class="flex flex-col md:flex-row md:items-center md:justify-between pb-6 border-b border-cyber-border mb-8 gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="relative flex items-center justify-center w-12 h-12 rounded-xl bg-slate-800 border border-cyber-neon text-cyber-neon glow-cyan">
+          <svg class="w-7 h-7 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+          <div class="absolute inset-0 rounded-xl border border-cyber-neon radar-pulse"></div>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h1 class="text-2xl sm:text-3xl font-extrabold tracking-
